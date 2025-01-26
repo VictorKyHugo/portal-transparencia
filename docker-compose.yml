@@ -10,5 +10,23 @@ services:
       - POSTGRES_USER=portal
       - POSTGRES_PASSWORD=portal
 
+  # portal-api:
+  #   build: ./portal-api
+  #   container_name: portal-api
+  #   environment:
+  #     - DB_SERVER=portal-postgres
+  #   ports:
+  #     - 8080:8080
+  #   links:
+  #     - portal-postgres
+
+  # portal-ui:
+  #   build: ./portal-ui
+  #   container_name: portal-ui
+  #   ports:
+  #     - 4200:80
+  #   links:
+  #     - portal-api
+
 volumes:
   portal-data:
