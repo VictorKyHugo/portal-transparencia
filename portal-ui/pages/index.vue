@@ -1,18 +1,22 @@
 <template>
   <div class="flex flex-wrap gap-10 justify-center items-center">
     <Card v-for="x in 20" class="sm:w-1/2 md:w-1/3 lg:w-1/4">
-      <template #title>Compras</template>
+      <template #title>Despesas</template>
       <!-- <template #subtitle>Card subtitle</template> -->
       <template #content>
         <p class="m-0">
-          Dispõe dos processos licitatórios e dispensados de licitação,
-          contratos e aditivos firmados, fornecimentos e documentos firmados
-          pela Administração Pública.
+          Dispõe da aplicação de recursos da Administração Pública em empenhos,
+          liquidações e pagamentos para custear serviços ou investir no
+          desenvolvimento econômico.
         </p>
       </template>
       <template #footer>
         <div class="flex justify-end mt-4">
-          <SplitButton label="Ver detalhes" @click="save" :model="items" />
+          <SplitButton
+            label="Ver detalhes"
+            @click="() => $router.push('/empenhos')"
+            :model="itemsDespesas"
+          />
         </div>
       </template>
     </Card>
@@ -20,81 +24,92 @@
 </template>
 
 <script setup>
-const items = [
+const router = useRouter();
+
+const itemsDespesas = ref([
   {
-    label: "Inexigibilidade",
+    label: "Empenhos e Favorecidos",
+    command: () => {
+      router.push("/empenhos");
+    },
   },
   {
-    label: "Convênios",
+    label: "Liquidações e Favorecidos",
+    disabled: true,
   },
   {
-    label: "Dispensas",
+    label: "Pagamentos e Favorecidos",
+    disabled: true,
   },
   {
-    label: "Licitações",
+    label: "Ordem Cronológica dos Pagamentos",
+    disabled: true,
   },
   {
-    label: "Contratos e Aditivos",
+    label: "Despesas com Diárias",
+    disabled: true,
   },
   {
-    label: "Fiscais de Contratos",
+    label: "Despesas com Passagens",
+    disabled: true,
   },
   {
-    label: "Termos de Compromisso/Atas",
-  },
-  {
-    label: "Ordem de Compras",
+    label: "Despesas com Obras",
+    disabled: true,
   },
   {
     separator: true,
   },
   {
     label: "Documentos",
+    disabled: true,
+
     items: [
       {
-        label: "Contratos e Aditivos (Documentos)",
+        label: "Viagens e Diárias Custeadas por Terceiros",
+        disabled: true,
       },
       {
-        label: "Atas de Registro de Preço (Documentos)",
+        label: "Programas, Projetos e Ações",
+        disabled: true,
       },
       {
-        label: "Atas das Licitações (Documentos)",
+        label: "Ordem Cronológica dos Pagamentos (Documentos)",
+        disabled: true,
       },
       {
-        label: "Editais (Documentos)",
+        label: "Relatório Res. Execução Orçamentária (RREO) (Documentos)",
+        disabled: true,
       },
       {
-        label: "Atas de Adesão - SRP",
+        label: "Relatório Gestão Fiscal (RGF) (Documentos)",
+        disabled: true,
       },
       {
-        label: "Fiscal de Contrato",
+        label: "Créditos Suplementares (Documentos)",
+        disabled: true,
       },
       {
-        label: "Processos de Dispensa e Inexigibilidade",
+        label: "Despesas com Diárias (Documentos)",
+        disabled: true,
       },
       {
-        label: "Contratos e Aditivos – Lei nº 14.133/2021 (Documentos)",
+        label: "Balanço Anual (Documentos)",
+        disabled: true,
       },
       {
-        label: "Licitantes/Contratados Sancionados(Documentos)",
+        label: "Balancetes Mensais (Documentos)",
+        disabled: true,
       },
       {
-        label:
-          "Parcerias com Entidades da Sociedade Civil Organizada (Documentos)",
+        label: "Relatórios da Dívida Pública",
+        disabled: true,
       },
       {
-        label: "Plano de Contratações Anual (Documentos)",
+        label: "Cumprimento de Metas - PPA",
+        disabled: true,
       },
     ],
   },
-];
-
-const save = () => {
-  toast.add({
-    severity: "success",
-    summary: "Success",
-    detail: "Data Saved",
-    life: 3000,
-  });
-};
+]);
 </script>
