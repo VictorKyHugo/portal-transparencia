@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { EmpenhosService } from './empenhos.service';
 import { CreateEmpenhoDto } from './dto/create-empenho.dto';
 import { UpdateEmpenhoDto } from './dto/update-empenho.dto';
@@ -13,8 +22,18 @@ export class EmpenhosController {
   }
 
   @Get()
-  findAll() {
-    return this.empenhosService.findAll();
+  findAll(
+    @Query('page') page = 1,
+    @Query('pageSize') pageSize = 10,
+    @Query('sortBy') sortBy = 'id',
+    @Query('sortOrder') sortOrder: 'asc' | 'desc' = 'asc',
+  ) {
+    return this.empenhosService.findAll({
+      page: +page,
+      pageSize: +pageSize,
+      sortBy,
+      sortOrder,
+    });
   }
 
   @Get(':id')
