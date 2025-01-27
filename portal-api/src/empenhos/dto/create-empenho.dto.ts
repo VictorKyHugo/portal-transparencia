@@ -2,9 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateEmpenhoDto {
   @ApiProperty()
-  id: number;
-
-  @ApiProperty()
   ano: string;
 
   @ApiProperty()
