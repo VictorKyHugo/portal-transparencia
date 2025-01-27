@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Empenho {
-  id                   String   @id @default(cuid())
+  id                  Int       @id @default(autoincrement())
   ano                 String
   mes                 String
   unidade_gestora     String

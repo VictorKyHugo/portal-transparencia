@@ -5,7 +5,7 @@ import { xml2js } from 'xml-js';
 const prisma = new PrismaClient();
 
 interface Empenho {
-  id: string;
+  id: number;
   ano: string;
   mes: string;
   unidade_gestora: string;
