@@ -8,7 +8,7 @@ export class EmpenhosService {
   constructor(private prisma: PrismaService) {}
 
   create(createEmpenhoDto: CreateEmpenhoDto) {
-    return 'This action adds a new empenho';
+    return this.prisma.empenho.create({ data: createEmpenhoDto });
   }
 
   async findAll(params: {
@@ -56,10 +56,13 @@ export class EmpenhosService {
   }
 
   update(id: number, updateEmpenhoDto: UpdateEmpenhoDto) {
-    return `This action updates a #${id} empenho`;
+    return this.prisma.empenho.update({
+      where: { id },
+      data: updateEmpenhoDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} empenho`;
+    return this.prisma.empenho.delete({ where: { id } });
   }
 }
