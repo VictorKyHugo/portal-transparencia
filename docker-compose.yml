@@ -7,19 +7,16 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_DB=portal
-      - POSTGRES_USER=portal
-      - POSTGRES_PASSWORD=portal
+      POSTGRES_DB: portal
+      POSTGRES_USER: portal
+      POSTGRES_PASSWORD: portal
 
   portal-api:
     build: ./portal-api
     container_name: portal-api
     environment:
-      - DATABASE_URL=postgres://portal:portal@portal-db:5432/portal-db
-      - DB_SERVER=portal-db
-      - POSTGRES_DB=portal
-      - POSTGRES_USER=portal
-      - POSTGRES_PASSWORD=portal
+      DATABASE_URL: postgres://portal:portal@portal-db:5432/portal-db
+      DB_SERVER: portal-db
     ports:
       - 80:80
     links:
