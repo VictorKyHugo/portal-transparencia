@@ -1,32 +1,39 @@
 services:
-  portal-postgres:
+  portal-db:
     image: "postgres:9.6-alpine"
-    container_name: portal-postgres
+    container_name: portal-db
     volumes:
       - portal-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
+      - POSTGRES_DB=portal
       - POSTGRES_USER=portal
       - POSTGRES_PASSWORD=portal
 
-  # portal-api:
-  #   build: ./portal-api
-  #   container_name: portal-api
-  #   environment:
-  #     - DB_SERVER=portal-postgres
-  #   ports:
-  #     - 8080:8080
-  #   links:
-  #     - portal-postgres
+  portal-api:
+    build: ./portal-api
+    container_name: portal-api
+    environment:
+      - DATABASE_URL=postgres://portal:portal@portal-db:5432/portal-db
+      - DB_SERVER=portal-db
+      - POSTGRES_DB=portal
+      - POSTGRES_USER=portal
+      - POSTGRES_PASSWORD=portal
+    ports:
+      - 80:80
+    links:
+      - portal-db
+    depends_on:
+      - portal-db
 
-  # portal-ui:
-  #   build: ./portal-ui
-  #   container_name: portal-ui
-  #   ports:
-  #     - 4200:80
-  #   links:
-  #     - portal-api
+  portal-ui:
+    build: ./portal-ui
+    container_name: portal-ui
+    ports:
+      - 3000:3000
+    links:
+      - portal-api
 
 volumes:
   portal-data:

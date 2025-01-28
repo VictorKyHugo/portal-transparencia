@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: false },
   devServer: {
-    port: 8000,
+    port: 3000,
   },
   modules: ["@primevue/nuxt-module", "@nuxtjs/tailwindcss", "@nuxt/icon"],
   primevue: {
@@ -14,6 +14,11 @@ export default defineNuxtConfig({
       theme: {
         preset: Aura,
       },
+    },
+  },
+  app: {
+    head: {
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
   },
 });
