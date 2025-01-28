@@ -146,7 +146,7 @@ const fetchTableData = async (nextPage, rowsPerPage) => {
   isFetching.value = true;
 
   const { data, meta } = await $fetch(
-    `http://localhost:3000/empenhos?page=${nextPage}&pageSize=${rowsPerPage}`
+    `http://localhost:80/empenhos?page=${nextPage}&pageSize=${rowsPerPage}`
   );
 
   empenhos.value = data;
